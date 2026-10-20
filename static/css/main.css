@@ -825,72 +825,100 @@ a, a:visited, a:link {
     line-height: 13px;
   }
 }
-/* Vibrant palette: deep navy backdrop, colour-coded BG number with a soft glow,
-   and brighter axes and pills so the chart reads at a glance. */
+
+/* Palette shared with the Nightscout History companion: near-black green
+   backdrop, mint for in range, amber for warnings, soft coral only for
+   urgent highs and lows. */
+:root {
+  --ns-bg: #071416;
+  --ns-panel: #0c1c1f;
+  --ns-text: #e2f0eb;
+  --ns-muted: #91a9a5;
+  --ns-line: #223739;
+  --ns-mint: #8be0bd;
+  --ns-amber: #e8bf77;
+  --ns-danger: #ffaaa2;
+}
+
 body {
-  background: radial-gradient(ellipse at top, #18234a 0%, #0b1022 55%, #05070d 100%) fixed;
-  color: #d6dcf0;
+  background: radial-gradient(ellipse at 30% -40%, #193e39 0, transparent 65%), var(--ns-bg);
+  color: var(--ns-text);
+}
+
+#toolbar {
+  background: url("../images/logo2.png") no-repeat 3px center var(--ns-panel);
+  border-bottom: 1px solid var(--ns-line);
 }
 
 #chartContainer {
-  background: linear-gradient(180deg, #101a36 0%, #0a0f1e 100%);
-  border-top: 1px solid rgba(138, 180, 255, 0.18);
+  background: linear-gradient(160deg, #102320 0%, var(--ns-panel) 60%);
+  border-top: 1px solid var(--ns-line);
 }
 
 .urgent .bgButton {
-  color: #ff4d6d;
-  text-shadow: 0 0 18px rgba(255, 77, 109, 0.55);
+  color: var(--ns-danger);
+  text-shadow: 0 0 18px rgba(255, 170, 162, 0.35);
 }
 
 .warning .bgButton {
-  color: #ffc23d;
-  text-shadow: 0 0 18px rgba(255, 194, 61, 0.5);
+  color: var(--ns-amber);
+  text-shadow: 0 0 18px rgba(232, 191, 119, 0.35);
 }
 
 .inrange .bgButton {
-  color: #2ee6a6;
-  text-shadow: 0 0 18px rgba(46, 230, 166, 0.5);
+  color: var(--ns-mint);
+  text-shadow: 0 0 18px rgba(139, 224, 189, 0.4);
 }
 
 .pill, .statusPills .pill {
   border-radius: 8px;
-  border-color: #3b4c80;
-  background: #2a3760;
-  color: #e4e9ff;
+  border-color: #34514a;
+  background: #152b28;
+  color: var(--ns-text);
 }
 
 .pill em {
-  background: #0b1022;
+  background: var(--ns-bg);
 }
 
 #chartContainer .tick text {
-  fill: #9fb0d8;
+  fill: var(--ns-muted);
 }
 
 #chartContainer .axis path, #chartContainer .axis line {
-  stroke: #3b4c80;
+  stroke: #34514a;
 }
 
 .focus-range .selected {
-  border-color: #8ab4ff;
-  color: #0b1022;
-  background: #8ab4ff;
+  border-color: #3e6754;
+  color: #b9f7d6;
+  background: #29483d;
 }
 
-/* Alarm box in the blue palette: indigo-violet when urgent, blue-teal as a
-   warning, white text so the number stays readable on either. */
+/* Alarm box: amber when urgent, mint as a warning, dark text on either. */
 .alarming .bgButton {
-  color: #ffffff;
-  border-color: #9bb0ff;
-  text-shadow: 0 1px 6px rgba(5, 7, 13, 0.6);
+  color: #0d2820;
+  border-color: #3e6754;
+  text-shadow: none;
 }
 
 .alarming.urgent .bgButton {
-  background: linear-gradient(135deg, #4c6ef5 0%, #7048e8 100%);
-  box-shadow: 0 0 22px rgba(112, 72, 232, 0.55);
+  background: linear-gradient(135deg, #f0cf92 0%, var(--ns-amber) 100%);
+  box-shadow: 0 0 22px rgba(232, 191, 119, 0.45);
 }
 
 .alarming.warning .bgButton {
-  background: linear-gradient(135deg, #1c7ed6 0%, #15aabf 100%);
-  box-shadow: 0 0 22px rgba(21, 170, 191, 0.5);
+  background: linear-gradient(135deg, #b4f5d5 0%, var(--ns-mint) 100%);
+  box-shadow: 0 0 22px rgba(139, 224, 189, 0.45);
+}
+
+/* Link from the Hours bar to the History companion for longer ranges. */
+.focus-range .history-link {
+  border-color: #3e6754;
+  margin-left: 6px;
+}
+
+.focus-range .history-link a {
+  color: var(--ns-mint);
+  padding: 0 6px;
 }
