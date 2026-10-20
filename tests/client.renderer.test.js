@@ -145,5 +145,18 @@ describe('renderer', () => {
       const points = renderer({}, {}).movingAverage(entries, 24 * HOUR, HOUR);
       points.should.eql([{ mills: HOUR, mgdl: 90 }, { mills: 2 * HOUR, mgdl: 100 }]);
     });
+
+    it('leaves out sensor error codes and missing time instead of counting them', () => {
+      const entries = [sgv(0, 100), sgv(MIN, 5), sgv(2 * MIN, NaN), sgv(5 * HOUR, 140)];
+      const points = renderer({}, {}).movingAverage(entries, 24 * HOUR, 0);
+      points.map(p => p.mgdl).should.eql([100, 120]);
+    });
+
+    it('measures minHistory from the supplied coverage start, not the first reading', () => {
+      const entries = [sgv(10 * HOUR, 100), sgv(12 * HOUR, 120)];
+      renderer({}, {}).movingAverage(entries, 24 * HOUR, 11 * HOUR).should.eql([]);
+      const points = renderer({}, {}).movingAverage(entries, 24 * HOUR, 11 * HOUR, 0);
+      points.should.eql([{ mills: 12 * HOUR, mgdl: 110 }]);
+    });
   });
 });
