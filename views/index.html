@@ -30,7 +30,7 @@
   <meta name="theme-color" content="#333333">
   <link rel="preload" href="css/ui-darkness/jquery-ui.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="css/jquery.tooltips.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="css/main.css?v=<%= locals.cachebuster %>" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="css/drawer.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="css/dropdown.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
@@ -291,6 +291,10 @@
         <dl class="toggle">
           <dt><span class="translate">Show Glucose Line</span> <a class="tip" original-title="When enabled a smooth line connects the glucose readings on the chart"><i class="icon-help-circled"></i></a></dt>
           <dd><input type="checkbox" name="glucoseline-browser" id="glucoseline-browser"><label for="glucoseline-browser" class="translate">Enable</label></dd>
+        </dl>
+        <dl class="toggle">
+          <dt><span class="translate">Show 24h Average Line</span> <a class="tip" original-title="When enabled a dashed line shows the average glucose over the previous 24 hours, like a moving average on a stock chart"><i class="icon-help-circled"></i></a></dt>
+          <dd><input type="checkbox" name="dailyaverage-browser" id="dailyaverage-browser"><label for="dailyaverage-browser" class="translate">Enable</label></dd>
         </dl>
         <dl>
           <dt class="translate">Custom Title</dt>
@@ -765,7 +769,7 @@
     <audio src="audio/alarm2.mp3" preload="auto" loop="true" class="urgent alarm2 mp3" type="audio/mp3"></audio>
   </div>
 
-  <script src="<%= locals.bundle %>/js/bundle.app.js"></script>
+  <script src="<%= locals.bundle %>/js/bundle.app.js?v=<%= locals.cachebuster %>"></script>
   <script src="socket.io/socket.io.js"></script>
   <script src="js/client.js"></script>
 

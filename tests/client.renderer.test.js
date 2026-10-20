@@ -120,4 +120,30 @@ describe('renderer', () => {
       segments[0].map(d => d.mills).should.eql([0, MIN, 2 * MIN]);
     });
   });
+
+  describe('movingAverage', () => {
+    const MIN = 5 * 60 * 1000;
+    const HOUR = 60 * MIN;
+
+    function sgv (mills, mgdl) {
+      return { type: 'sgv', mills: mills, mgdl: mgdl };
+    }
+
+    it('returns no points for empty or undefined input', () => {
+      renderer({}, {}).movingAverage([], HOUR, 0).should.eql([]);
+      renderer({}, {}).movingAverage(undefined, HOUR, 0).should.eql([]);
+    });
+
+    it('averages only the readings inside the trailing window', () => {
+      const entries = [sgv(0, 100), sgv(30 * MIN, 200), sgv(HOUR, 300), sgv(90 * MIN, 400)];
+      const points = renderer({}, {}).movingAverage(entries, HOUR, 0);
+      points.map(p => p.mgdl).should.eql([100, 150, 250, 350]);
+    });
+
+    it('waits for minHistory before emitting points and ignores non-sgv entries', () => {
+      const entries = [sgv(2 * HOUR, 120), { type: 'mbg', mills: HOUR, mgdl: 999 }, sgv(0, 80), sgv(HOUR, 100)];
+      const points = renderer({}, {}).movingAverage(entries, 24 * HOUR, HOUR);
+      points.should.eql([{ mills: HOUR, mgdl: 90 }, { mills: 2 * HOUR, mgdl: 100 }]);
+    });
+  });
 });
