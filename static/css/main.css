@@ -913,31 +913,60 @@ body {
 }
 
 /* Toolbar button that opens the History companion (longer and custom ranges). */
-#buttonbar #historyLink {
+
+/* Live | History switch, shared look and position with the History page. */
+#toolbar .page-switch {
   display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  width: auto;
-  height: 30px;
-  line-height: 30px;
-  margin: 7px 10px 0 0;
-  padding: 0 12px;
+  margin: 0 auto 0 18px;
+  border: 1px solid #3e6754;
+  border-radius: 8px;
+  overflow: hidden;
   font-size: 14px;
   font-weight: bold;
-  color: #0d2820;
-  background: var(--ns-mint);
-  border-radius: 8px;
+  line-height: 26px;
   text-shadow: none;
 }
 
-#buttonbar #historyLink:hover {
-  background: #b4f5d5;
+#toolbar .page-switch a,
+#toolbar .page-switch span {
+  padding: 0 14px;
+  text-decoration: none;
 }
 
-#buttonbar #historyLink i {
+#toolbar .page-switch a {
+  color: var(--ns-mint);
+}
+
+#toolbar .page-switch a:hover {
+  background: #1f3a33;
+}
+
+#toolbar .page-switch .current {
   color: #0d2820;
-  font-size: 16px;
-  height: 30px;
-  line-height: 30px;
-  padding-left: 0;
+  background: var(--ns-mint);
+}
+
+/* Phones: keep the whole switch visible and let the long title give way. */
+#toolbar .page-switch {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  #toolbar .customTitle {
+    min-width: 0;
+    max-width: 38vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #toolbar .page-switch {
+    margin-left: 8px;
+    font-size: 13px;
+  }
+
+  #toolbar .page-switch a,
+  #toolbar .page-switch span {
+    padding: 0 9px;
+  }
 }

@@ -1,6 +1,12 @@
 <div id="toolbar">
     <h1 class="customTitle">Nightscout</h1>
 
+    <%if (type === 'index') { %>
+        <nav id="pageSwitch" class="page-switch" aria-label="Switch page">
+            <span class="current" aria-current="page">Live</span><a id="historyLink" href="http://127.0.0.1:3032/" title="Open the History page: longer ranges, custom dates and trends">History</a>
+        </nav>
+    <% } %>
+
     <%if (type !== 'index') { %>
         <a href="/" class="closeButton button-close"><span>X</span></a>
     <% } %>
@@ -24,7 +30,6 @@
             <a id="testAlarms" class="tip" original-title="Alarm Test / Smartphone Enable" aria-label="Alarm Test / Smartphone Enable" href="#"><i class="icon-volume"></i></a>
             <a id="editbutton" class="tip" original-title="Edit Mode" aria-label="Edit Mode" href="#" style="display:none;"><i class="icon-edit"></i></a>
             <a id="adminnotifies" class="tip" original-title="Admin ntofications" aria-label="Admin notifications" href="#" style="display:none;"><i class="plugicon-notifies" style='color: #c91515'></i></a>
-            <a id="historyLink" class="tip" original-title="Open the History page: longer ranges, custom dates and trends" aria-label="History" href="http://127.0.0.1:3032/" target="_blank" rel="noopener"><i class="icon-chart-line"></i><span class="translate">History</span></a>
         </div>
     <% } %>
 </div>
