@@ -912,13 +912,26 @@ body {
   box-shadow: 0 0 22px rgba(139, 224, 189, 0.45);
 }
 
-/* Link from the Hours bar to the History companion for longer ranges. */
-.focus-range .history-link {
-  border-color: #3e6754;
-  margin-left: 6px;
+/* Toolbar button that opens the History companion (longer and custom ranges). */
+#historyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  margin-right: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0d2820 !important;
+  background: var(--ns-mint);
+  border-radius: 8px;
+  text-shadow: none;
+  vertical-align: middle;
 }
 
-.focus-range .history-link a {
-  color: var(--ns-mint);
-  padding: 0 6px;
+#historyLink:hover {
+  background: #b4f5d5;
+}
+
+#historyLink i {
+  font-size: 16px;
 }
