@@ -970,3 +970,153 @@ body {
     padding: 0 9px;
   }
 }
+
+/* The "---" shown when there is no recent reading: a strike-through would fuse
+   the dashes into one smeared bar, so draw them plainly with a little air. */
+.alarming-timeago .bgStatus.current .currentBG.no-reading,
+.bgStatus .currentBG.no-reading {
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
+}
+
+/* ==== Redesign to match the History page ====
+   Same type, header, rounded panels, preset-style hour buttons and quiet
+   cards; colour carries meaning (mint in range, amber warning, coral urgent). */
+body, #toolbar, .bgStatus, .status, .focus-range, #chartContainer {
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+}
+
+#toolbar {
+  height: 56px;
+  margin: 0 0 8px;
+  padding: 0 20px 0 66px;
+  background: url("../images/logo2.png") no-repeat 22px center transparent;
+  border-bottom: 1px solid var(--ns-line);
+  text-shadow: none;
+}
+
+#toolbar .customTitle {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: var(--ns-text);
+}
+
+#container.alarming .customTitle,
+#container.alarming.urgent .customTitle,
+#container.alarming.warning .customTitle,
+#container.alarming-timeago .customTitle {
+  color: var(--ns-amber);
+}
+
+#buttonbar {
+  opacity: 1;
+}
+
+#buttonbar a, #buttonbar i {
+  color: #b9cec6;
+}
+
+/* Clock and status chips */
+#currentTime {
+  color: var(--ns-text);
+  font-weight: 300;
+  letter-spacing: -2px;
+}
+
+.status .pill, .statusPills .pill, .minorPills .pill, .majorPills .pill {
+  border: 1px solid #34514a;
+  background: #152b28;
+  color: #c9e6d6;
+  border-radius: 7px;
+}
+
+.pill em, .pill label {
+  background: transparent;
+  color: inherit;
+}
+
+.alarming-timeago .timeago.pill.warn,
+.alarming-timeago .timeago.pill.urgent {
+  border-color: #796039;
+  background: #3f2e20;
+}
+
+.alarming-timeago .timeago.pill.warn label,
+.alarming-timeago .timeago.pill.urgent label {
+  background: transparent;
+  color: #e4c694;
+}
+
+/* Hours bar styled like the History presets */
+.focus-range {
+  color: var(--ns-muted);
+}
+
+.focus-range li {
+  border: 0;
+  border-radius: 7px;
+  padding: 2px 9px;
+  font-size: 15px;
+  color: #9fb8ae;
+}
+
+.focus-range li:first-child {
+  color: var(--ns-muted);
+  cursor: default;
+}
+
+.focus-range li:hover {
+  background: #203a37;
+}
+
+.focus-range .selected {
+  border: 0;
+  color: #b9f7d6;
+  background: #29483d;
+  box-shadow: inset 0 0 0 1px #3e6754;
+}
+
+/* Current reading as a quiet card, like the History metrics */
+.bgButton {
+  background: #0c1c1d;
+  border: 1px solid var(--ns-line);
+  border-radius: 13px;
+  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.13);
+}
+
+.bgStatus .currentBG {
+  font-weight: 300;
+  letter-spacing: -3px;
+}
+
+.alarming .bgButton,
+.alarming.urgent .bgButton,
+.alarming.warning .bgButton {
+  background: #0c1c1d;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.alarming.warning .bgButton {
+  border-color: #796039;
+  color: var(--ns-amber);
+}
+
+.alarming.urgent .bgButton {
+  border-color: #8a5652;
+  color: var(--ns-danger);
+}
+
+/* Chart as a rounded panel, like the History workspace */
+#chartContainer {
+  left: 14px;
+  right: 14px;
+  box-sizing: border-box;
+  background: linear-gradient(160deg, #102320 0%, var(--ns-panel) 60%);
+  border: 1px solid var(--ns-line);
+  border-radius: 13px;
+  overflow: hidden;
+  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.13);
+}
